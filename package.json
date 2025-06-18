@@ -1,0 +1,32 @@
+{
+  "name": "federation-demo1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:remote": "tsc build/build-mfe1.ts --outDir dist && node dist/build-mfe1.js",
+    "build:host": "tsc build/build-shell.ts --outDir dist && node dist/build-shell.js",
+    "build": "npm run build:remote && npm run build:host",
+    "watch": "concurrently \"npm run build:remote -- --watch\" \"npm run build:host -- --watch\"",
+    "start:remote": "live-server dist/mfe1 --port=3001 --cors",
+    "start:host": "live-server dist/shell --port=3000",
+    "start": "concurrently \"npm run start:remote\" \"npm run start:host\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@softarc/native-federation": "^2.0.0",
+    "@softarc/native-federation-esbuild": "^2.0.0",
+    "@types/node": "^20.5.9",
+    "concurrently": "^8.2.1",
+    "esbuild": "^0.19.2",
+    "json5": "^2.2.3",
+    "live-server": "^1.2.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@softarc/native-federation-runtime": "^2.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  } 
+}
